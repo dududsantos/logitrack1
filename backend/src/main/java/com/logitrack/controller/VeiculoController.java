@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/veiculos")
-@RequiredArgsConstructor //pq?
+@RequiredArgsConstructor 
 public class VeiculoController {
 
 	private final VeiculoService veiculoService;
