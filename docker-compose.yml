@@ -15,7 +15,7 @@ services:
       retries: 10
 
   api:
-    build: ./logap
+    build: ./backend
     environment:
       DB_URL: jdbc:postgresql://db:5432/logitrack
       DB_USER: postgres
