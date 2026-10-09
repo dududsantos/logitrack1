@@ -14,7 +14,6 @@ import com.logitrack.model.Veiculo;
 import com.logitrack.model.Viagem;
 import com.logitrack.repository.VeiculoRepository;
 import com.logitrack.repository.ViagemRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -39,6 +38,7 @@ public class ViagemService {
 	@Transactional
 	public ViagemResponse criar(ViagemRequest request) {
 		Veiculo veiculo = buscarVeiculo(request.veiculoId());
+		validarRegras(request, null);
 		Viagem viagem = new Viagem();
 		ViagemMapper.preencher(viagem, request, veiculo);
 		return ViagemMapper.toResponse(viagemRepository.save(viagem));
@@ -48,6 +48,7 @@ public class ViagemService {
 	public ViagemResponse atualizar(Integer id, ViagemRequest request) {
 		Viagem viagem = buscarViagem(id);
 		Veiculo veiculo = buscarVeiculo(request.veiculoId());
+		validarRegras(request, id);
 		ViagemMapper.preencher(viagem, request, veiculo);
 		return ViagemMapper.toResponse(viagemRepository.save(viagem));
 	}
@@ -55,6 +56,25 @@ public class ViagemService {
 	@Transactional
 	public void excluir(Integer id) {
 		viagemRepository.delete(buscarViagem(id));
+	}
+
+	private void validarRegras(ViagemRequest request, Integer idIgnorado) {
+		if (!request.dataChegada().isAfter(request.dataSaida())) {
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
+					"A data de chegada deve ser posterior à data de saída");
+		}
+
+		if (request.origem().trim().equalsIgnoreCase(request.destino().trim())) {
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
+					"Origem e destino devem ser diferentes");
+		}
+
+		boolean sobreposta = viagemRepository.existeSobreposicao(
+				request.veiculoId(), request.dataSaida(), request.dataChegada(), idIgnorado);
+		if (sobreposta) {
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_CONTENT,
+					"Veículo já possui viagem no período informado");
+		}
 	}
 
 	private Viagem buscarViagem(Integer id) {
