@@ -14,3 +14,13 @@ spring:
         format_sql: true
   flyway:
     enabled: true
+  web:
+    error:
+      include-message: always
+
+jwt:
+  expiration-ms: 7200000
+  secret: ${JWT_SECRET:x7Kp9mN2vQ8sL4tYzR1aBcDeFgHiJkLmNoPqRsTuVw}
+
+app:
+  cors-origin: ${CORS_ORIGIN:http://localhost:5173}
