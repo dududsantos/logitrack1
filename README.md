@@ -6,7 +6,7 @@ Sistema de gestão de frota com **CRUD de Viagens** (módulo escolhido: Opção 
 - **Frontend:** SPA em React (Vite)
 - **Infra:** Docker Compose (banco + API + frontend)
 
-Veja as telas e principais funcionalidades do sistema na seção [Demonstração](#6-demonstração).
+Veja as telas e principais funcionalidades do sistema na seção de [Demonstração](#6-demonstração).
 
 ---
 
@@ -156,7 +156,7 @@ No Docker, o frontend é compilado (`npm run build`) e os arquivos estáticos s�
 
 - **Entidades nunca são expostas na API.** A entrada e a saída usam DTOs, então as mudanças no banco não quebram o contrato com o frontend.
 - **JPA no CRUD, SQL nativo no dashboard.** Produtividade onde há escrita e controle total nas consultas de relatório, como solicitado.
-- **`open-in-view: false` + `@EntityGraph`.** A listagem de viagens traz o veículo no mesmo `JOIN`, evitando o problema de N+1 consultas e lazy loading fora da transação.
+- ** `@EntityGraph`.** A listagem de viagens traz o veículo no mesmo `JOIN`, evitando o problema de N+1 consultas e lazy loading fora da transação.
 - **Senhas com BCrypt.** O banco guarda apenas o hash.
 
 
@@ -223,7 +223,7 @@ Os dados originais do script foram mantidos sem alteração.
 
 ## 6. Demonstração
 
-🎥 **Vídeo:** [Demo em Vídeo](https://drive.google.com/file/d/1_QZqRa-ch6X4zXrlOxkTcEgMxBnsauh2/view?usp=sharing)
+🎥 **Vídeo:** [Demo do app em Vídeo](https://drive.google.com/file/d/1_QZqRa-ch6X4zXrlOxkTcEgMxBnsauh2/view?usp=sharing)
 
 ### Login
 
