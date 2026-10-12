@@ -6,6 +6,8 @@ Sistema de gestão de frota com **CRUD de Viagens** (módulo escolhido: Opção 
 - **Frontend:** SPA em React (Vite)
 - **Infra:** Docker Compose (banco + API + frontend)
 
+Veja as telas e principais funcionalidades do sistema na seção [Demonstração](#6-demonstração).
+
 ---
 
 ## 1. Como rodar o projeto
@@ -216,4 +218,40 @@ CREATE TABLE usuarios (
 **3. Usuário padrão (V3).** Permite acessar o sistema logo após subir o projeto (`admin` / `admin123`). A senha é gravada apenas como hash BCrypt.
 
 Os dados originais do script foram mantidos sem alteração.
+
+---
+
+## 6. Demonstração
+
+🎥 **Vídeo:** [Demo em Vídeo](https://drive.google.com/file/d/1_QZqRa-ch6X4zXrlOxkTcEgMxBnsauh2/view?usp=sharing)
+
+### Login
+
+Acesso com usuário e senha. Credenciais inválidas exibem uma mensagem de erro.
+
+![Tela de login](docs/demoImg/login.png)
+
+![Login com credenciais inválidas](docs/demoImg/loginError.png)
+
+### Viagens (CRUD)
+
+Formulário de cadastro e listagem das viagens, com ações de editar e excluir.
+
+![Listagem de viagens](docs/demoImg/crud+list.png)
+
+![Cadastro de uma nova viagem](docs/demoImg/crud.png)
+
+As regras de negócio são validadas pela API, e a mensagem é exibida no formulário. Exemplo: chegada anterior à saída.
+
+![Erro de regra de negócio no cadastro](docs/demoImg/crudError.png)
+
+### Dashboard
+
+Indicadores da frota, gráficos de viagens por categoria e ranking de utilização, e o cronograma de manutenções.
+
+![Dashboard](docs/demoImg/dashboard.png)
+
+O total de KM pode ser filtrado por veículo.
+
+![Filtro de KM por veículo](docs/demoImg/viagemFilterDash.png)
 
