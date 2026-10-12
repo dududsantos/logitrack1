@@ -14,11 +14,12 @@ import com.logitrack.model.Viagem;
 // Repository 
 public interface DashboardRepository extends Repository<Viagem, Integer> {
 
-	// 1. Total de KM da frota ou de um veículo
+	// 1. Total de KM (só viagens realizadas) da frota ou de um veículo
 	@Query(value = """
 			SELECT COALESCE(SUM(km_percorrida), 0)
 			FROM viagens
-			WHERE CAST(:veiculoId AS INTEGER) IS NULL OR veiculo_id = :veiculoId
+			WHERE data_chegada <= NOW()
+			  AND (CAST(:veiculoId AS INTEGER) IS NULL OR veiculo_id = :veiculoId)
 			""", nativeQuery = true)
 	BigDecimal totalKm(@Param("veiculoId") Integer veiculoId);
 
@@ -54,12 +55,13 @@ public interface DashboardRepository extends Repository<Viagem, Integer> {
 	List<CronogramaManutencaoProjection> proximasManutencoes();
 
 	
-	// 4. Ranking dos veículos que mais rodaram 
+	// 4. Ranking dos veículos que mais rodaram (só viagens realizadas)
 	@Query(value = """
 			SELECT ve.id, ve.placa, ve.modelo, ve.tipo,
 			       SUM(vi.km_percorrida) AS "totalKm"
 			FROM viagens vi
 			JOIN veiculos ve ON ve.id = vi.veiculo_id
+			WHERE vi.data_chegada <= NOW()
 			GROUP BY ve.id
 			ORDER BY "totalKm" DESC
 			LIMIT 5
