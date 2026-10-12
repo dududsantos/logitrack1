@@ -12,12 +12,11 @@ import com.logitrack.model.Viagem;
 
 public interface ViagemRepository extends JpaRepository<Viagem, Integer> {
 
-	// Traz o veículo junto (JOIN) para evitar uma query extra 
+	// Traz o veículo junto 
 	@Override
 	@EntityGraph(attributePaths = "veiculo")
 	List<Viagem> findAll();
 
-	// idIgnorado: na edição, exclui a própria viagem da verificação (na criação é null).
 	@Query("""
 			SELECT COUNT(v) > 0 FROM Viagem v
 			WHERE v.veiculo.id = :veiculoId

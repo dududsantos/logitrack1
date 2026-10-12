@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Veiculo  {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //TODO: verificar a logica diso
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Integer id;
 
 	private String placa;

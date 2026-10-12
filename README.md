@@ -30,7 +30,7 @@ docker compose up --build
 |---|---|---|
 | `db` | `5432` | PostgreSQL 16 |
 | `api` | `8080` | API Spring Boot |
-| `frontend` | `5173` | Build do React servido por nginx |
+| `frontend` | `5173` | Build do React |
 
 - Na primeira execução, o **Flyway** cria as tabelas e insere os dados automaticamente.
 - A API só inicia depois que o banco estiver pronto.
@@ -251,7 +251,7 @@ Indicadores da frota, gráficos de viagens por categoria e ranking de utilizaç�
 
 ![Dashboard](docs/demoImg/dashboard.png)
 
-O total de KM pode ser filtrado por veículo.
+O total de KM filtrado por veículo.
 
 ![Filtro de KM por veículo](docs/demoImg/viagemFilterDash.png)
 
