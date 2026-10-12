@@ -14,7 +14,7 @@ import com.logitrack.model.Viagem;
 // Repository 
 public interface DashboardRepository extends Repository<Viagem, Integer> {
 
-	// 1. Total de KM (só viagens realizadas) da frota ou de um veículo
+	// 1. Total de KM (só viagens finalizadas) da frota ou de um veículo
 	@Query(value = """
 			SELECT COALESCE(SUM(km_percorrida), 0)
 			FROM viagens
@@ -55,7 +55,7 @@ public interface DashboardRepository extends Repository<Viagem, Integer> {
 	List<CronogramaManutencaoProjection> proximasManutencoes();
 
 	
-	// 4. Ranking dos veículos que mais rodaram (só viagens realizadas)
+	// 4. Ranking dos veículos que mais rodaram  (só viagens finalizadas)
 	@Query(value = """
 			SELECT ve.id, ve.placa, ve.modelo, ve.tipo,
 			       SUM(vi.km_percorrida) AS "totalKm"

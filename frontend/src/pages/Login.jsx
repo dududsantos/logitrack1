@@ -25,7 +25,7 @@ function Login({ onLogin }) {
     <div className="login-pagina">
       <form className="login" onSubmit={entrar}>
         <div className="marca">
-          <div className="logo">L</div>
+          <div className="logo">LP</div>
           <h1>LogiTrack Pro</h1>
           <p>Gestão de frota e viagens</p>
         </div>
