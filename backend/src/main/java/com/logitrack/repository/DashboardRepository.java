@@ -54,7 +54,7 @@ public interface DashboardRepository extends Repository<Viagem, Integer> {
 	List<CronogramaManutencaoProjection> proximasManutencoes();
 
 	
-	// 4. Ranking dos veículos que mais rodaram (top 5)
+	// 4. Ranking dos veículos que mais rodaram 
 	@Query(value = """
 			SELECT ve.id, ve.placa, ve.modelo, ve.tipo,
 			       SUM(vi.km_percorrida) AS "totalKm"

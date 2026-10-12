@@ -21,7 +21,7 @@ public final class ViagemMapper {
 				viagem.getKmPercorrida());
 	}
 
-	// Usado tanto na criação (viagem nova) quanto na edição (viagem carregada do banco)
+	// Usado tanto na criação e edicao
 	public static void preencher(Viagem viagem, ViagemRequest request, Veiculo veiculo) {
 		viagem.setVeiculo(veiculo);
 		viagem.setDataSaida(request.dataSaida());

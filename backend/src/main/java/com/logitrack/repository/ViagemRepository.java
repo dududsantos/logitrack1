@@ -12,7 +12,7 @@ import com.logitrack.model.Viagem;
 
 public interface ViagemRepository extends JpaRepository<Viagem, Integer> {
 
-	// Traz o veículo junto (JOIN) para evitar uma query extra por viagem (N+1)
+	// Traz o veículo junto (JOIN) para evitar uma query extra 
 	@Override
 	@EntityGraph(attributePaths = "veiculo")
 	List<Viagem> findAll();

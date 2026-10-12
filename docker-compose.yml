@@ -21,11 +21,19 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       JWT_SECRET: x7Kp9mN2vQ8sL4tYzR1aBcDeFgHiJkLmNoPqRsTuVw
+      CORS_ORIGIN: http://localhost:5173
     ports:
       - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
 
 volumes:
   pgdata:
